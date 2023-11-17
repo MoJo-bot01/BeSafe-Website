@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Forum</title>  
+  <link rel="icon" type="image/png" href="besafe-logo.jpeg">
+  <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js"></script>
+  <style>
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  width: 100vw; /* Set the width to 100vw to fill the screen horizontally */
+}
+.container {
+  background-color: #f5f0e1;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 1000px; /* Set a max-width if you don't want it to extend beyond a certain size */
+}
+
+#message-container {
+  max-height: 400px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+  border: 1px solid #8b5c42;
+  padding: 5px;
+  margin-top: 10px;
+}
+
+.message {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #8b5c42;
+  border-radius: 5px;
+  background-color: #f2e8d9;
+  width: 80%;
+  height: 60px;
+}
+
+
+.message .name {
+  font-weight: bold;
+  color: black;
+  width: 80%;
+}
+
+.message .time {
+  font-size: 12px;
+  color: #777;
+  width: 80%;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  margin-bottom: 20px;
+}
+
+.input-container input,
+.input-container textarea {
+  flex: 1;
+  padding: 5px;
+  margin-right: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.input-container input[type="file"] {
+  padding: 0;
+}
+
+.input-container button {
+  padding: 5px 10px;
+  background-color: #8b5c42;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 5px;
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  /* Adjustments for smaller screens */
+  .container {
+    padding: 10px;
+    width: 80%;
+  }
+
+  .input-container input,
+  .input-container textarea {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  .input-container button {
+    padding: 8px;
+    font-size: 12px;
+    width: 100%;
+  }
+
+
+
+    
+  </style>
+</head>
+<body>
+  <div class="main">
+    <div class="navbar">
+      <div class="icon">
+        <a href="homepage logged in.html"<h2 class="logo">BeSafe</h2></a>
+      </div>
+      <div class="menu">
+        <ul>
+          <li><a href="homepage%20logged%20in.html">HOME </a></li>
+          <li><a href="learn.html">LEARN</a></li>
+          <li><a href="forum.html">FORUM</a></li>
+          <li><a href="get%20help.html">GET HELP</a></li>
+          <li><a href="index.html" onclick="confirmLogout(event)">LOGOUT</a></li>
+        </ul>
+      </div>
+    </div>
+
+   
+    <div class="content">
+      <div class="container">
+        <h2>Forum</h2>
+        <div id="message-container">
+          <!-- Messages will be displayed here dynamically -->
+        </div>
+
+        <form id="forum-form">
+            <label for="message">MESSAGE</label>
+            <textarea id="message" name="message" required></textarea>
+            <button id="post-button">POST</button>
+        </form>
+
+		
+      </div>
+    </div>
+  </div>
+   </div>
+    
+
+  <footer>
+        <div class="footer-index"><div class="icons">
+            <a href="#"><ion-icon name="logo-facebook"></ion-icon></a>
+            <a href="#"><ion-icon name="logo-twitter"></ion-icon></a>
+            <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
+        </div>
+            <p>FORCE 3000 &copy; 2023. All rights reserved. | <a href="Privacy Policy.php">Privacy Policy</a> | <a href="Terms of Service.php">Terms of Service</a></p>
+    </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+    <link rel="icon" type="image/png" href="besafe-logo.jpeg">
+  <link rel="stylesheet" type="text/css" href="styles.css">  
+  <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-firestore.js"></script>
+  <script src="script.js"></script>
+
+ <style>
+ .logo {
+  margin: 0;
+  text-align: center;
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  padding: 20px 0;
+  text-decoration: none;
+}
+ </style>
+</head>
+<body>
+<div class="main">
+  <div class="navbar">
+    <div class="icon">
+      <a href="index.html"<h2 class="logo">BeSafe</h2></a>
+    </div>
+  </div>
+</div>
+
+  <div class="container">
+    <h2>Login</h2>
+    <form id="login-form" method="post">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+      
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required>
+      
+      <input type="submit" value="Login" onclick="event.preventDefault(); login()">
+
+    </form>
+
+    <div class="back-link">
+      <a href="sign up.html">Don't Have An Account? Sign Up Now!</a>
+    </div>
+    <div class="back-link">
+      <a href="index.html">Back To Home</a>
+    </div>
+  </div>
+
+    <div class="footer-login">
+      <div class="icons">
+            <a href="#"><ion-icon name="logo-facebook"></ion-icon></a>
+            <a href="#"><ion-icon name="logo-twitter"></ion-icon></a>
+            <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
+        </div>
+            <p>FORCE 3000 &copy; 2023. All rights reserved. | <a href="Privacy Policy.php">Privacy Policy</a> | <a href="Terms of Service.php">Terms of Service</a></p>
+    </div>
+   
+</body>
+</html>
+ 

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sign Up</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="icon" type="image/png" href="besafe-logo.jpeg">
+  <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+  <style>
+      .logo {
+      text-align: center;
+      margin-top: 50px;
+    }
+  </style>
+  <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-database.js"></script>
+  <script src="script.js"></script>
+</head>
+<body>
+<div class="main">
+        <div class="navbar">
+            <div class="icon">
+               <a href="index.html"<h2 class="logo">BeSafe</h2></a>
+            </div>
+        </div>
+    </div>
+  <div class="container">
+    <h2>Sign Up</h2>
+    <form id="signup-form" method="post">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" required>
+	  
+	  <label for="phone-number">Phone Number</label>
+      <input type="text" id="phone-number" name="phone-number" required>
+      
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+      
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required>
+	  
+	  <label for="confirm-password">Confirm Password</label>
+	  <input type="password" id="confirm-password" name="confirm-password" required>
+      
+      <input type="submit" value="Sign Up" onclick="event.preventDefault(); signUp()">
+    </form>
+
+    <div class="goback-link">
+      <a href="login.html">Already Have An Account? Login Now!</a>
+    </div>
+  </div>
+  
+  <footer>
+    <div class="footer-signup">
+    <div class="icons">
+            <a href="#"><ion-icon name="logo-facebook"></ion-icon></a>
+            <a href="#"><ion-icon name="logo-twitter"></ion-icon></a>
+            <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
+        </div>
+            <p>FORCE 3000 &copy; 2023. All rights reserved. | <a href="Privacy Policy.php">Privacy Policy</a> | <a href="Terms of Service.php">Terms of Service</a></p>
+    </div>
+  </footer>
+   
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BeSafe</title>
+    <link rel="icon" type="image/png" href="besafe-logo.jpeg">
+    <link rel="stylesheet" href="styles.css">
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRuB5HBOD3QoQ-Iw8wKJUT53t_1qnDX9M"></script>
+    <style>
+        #map {
+            height: auto; /* Set height to auto */
+            width: 100%;
+        }
+        .map-container-box {
+            width: 1362px;
+            height: 515px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 70px;
+        }
+		 .content {
+        position: absolute;
+        top: 50%;
+        right: 40px; /* Adjust the value as needed */
+        transform: translateY(-50%);
+        transition: background-color 0.3s ease;
+        background-color: red;
+        position: fixed;
+        border-radius: 150px;
+        height: 45px;
+        padding-top: 20px;
+    }
+
+    .alert-image{
+    height: 30px;
+    width: 35px;
+  }
+	 
+    </style>
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-database.js"></script>
+    <script src="script.js"></script>
+  
+  <style>
+        /* Specify the size of the map container */
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="navbar">
+            <div class="icon">
+               <a href="index.html"<h2 class="logo">BeSafe</h2></a>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="login.html">LOGIN</a></li>
+                    <li><a href="sign up.html">SIGN UP</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+		
+	<div class="map-container-box">
+        <div id="map" ></div> 
+		<div class="content">
+            <div>
+                <img class="alert-image" src="alert_img.png" alt="Send Alert" onclick="showAbuseTypeDialog()">
+            </div>
+            <div>
+                <button class="cn" onclick="showAbuseTypeDialog()">SEND ALERT</button>
+            </div>
+        </div>
+    </div>
+	 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRuB5HBOD3QoQ-Iw8wKJUT53t_1qnDX9M"></script>
+
+<script>
+       // Initialize and create the map
+  function initMap() {
+    var map;
+
+    // Try to get the user's current location
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function (position) {
+        var userLatLng = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+
+        // Create a new map centered at the user's current location
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: userLatLng
+        });
+
+        // Create a marker for the user's current location
+        var userMarker = new google.maps.Marker({
+          position: userLatLng,
+          map: map,
+          title: 'Your Location'
+        });
+
+        // Call the function to display hotspots
+        displayHotspots();
+      });
+    } else {
+      // Handle the case where geolocation is not available or denied
+      var defaultLatLng = { lat: -25.7461, lng: 28.1882 }; // Default location
+      map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 12,
+        center: defaultLatLng
+      });
+
+      // Create a marker for the default location
+      var databaseRef = firebase.database().ref('Alerts'); 
+
+    databaseRef.on('value', function(snapshot) {
+      snapshot.forEach(function(childSnapshot) {
+        var hotspotData = childSnapshot.val();
+        var latitude = hotspotData.latitude;
+        var longitude = hotspotData.longitude;
+        var description = hotspotData.description;
+
+        // Create a marker for each hotspot
+        var marker = new google.maps.Marker({
+          position: { lat: latitude, lng: longitude },
+          map: map, // Assuming 'map' is the reference to your map
+          title: description,
+    }
+  }
+    </script>
+	
+	<script>
+	// Function to retrieve and display hotspots on the map
+  function displayHotspots() {
+    var databaseRef = firebase.database().ref('Alerts'); 
+
+    databaseRef.on('value', function(snapshot) {
+      snapshot.forEach(function(childSnapshot) {
+        var hotspotData = childSnapshot.val();
+        var latitude = hotspotData.latitude;
+        var longitude = hotspotData.longitude;
+        var description = hotspotData.description;
+
+        // Create a marker for each hotspot
+        var marker = new google.maps.Marker({
+          position: { lat: latitude, lng: longitude },
+          map: map, // Assuming 'map' is the reference to your map
+          title: description,
+        });
+      });
+    });
+  }
+	</script>
+	
+<!-- Call the initMap() function to initialize the map -->
+    <script>
+        initMap();
+    </script>
+	
+    <!-- Abuse Type Dialog -->
+    <div id="abuseTypeDialog" class="dialog" style="display: none;">
+        <div class="dialog-content">
+            <span class="dialog-close" onclick="closeDialog('abuseTypeDialog')">&times;</span>
+            <h2>Select the Type of Abuse</h2>
+            <select id="abuseTypeSelect">
+                <option value="Physical Abuse">Physical Abuse</option>
+                <option value="Sexual Abuse">Sexual Abuse</option>
+                <option value="Emotional Abuse">Emotional Abuse</option>
+                <option value="Verbal Abuse">Verbal Abuse</option>
+                <option value="Other">Other</option>
+            </select>
+            <br>
+            <button onclick="showPhoneNumberDialog()">Next</button>
+        </div>
+    </div>
+
+    <!-- Phone Number Dialog -->
+    <div id="phoneNumberDialog" class="dialog" style="display: none;">
+        <div class="dialog-content">
+            <span class="dialog-close" onclick="closeDialog('phoneNumberDialog')">&times;</span>
+            <h2>Enter Your South African Cellphone Number</h2>
+            <input type="tel" id="phoneNumberInput">
+            <br>
+            <button onclick="sendAlert()">Send Alert</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-index">
+            <div class="icons">
+            <a href="#"><ion-icon name="logo-facebook"></ion-icon></a>
+            <a href="#"><ion-icon name="logo-twitter"></ion-icon></a>
+            <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
+        </div>
+            <p>FORCE 3000 &copy; 2023. All rights reserved. | <a href="Privacy Policy.php">Privacy Policy</a> | <a href="Terms of Service.php">Terms of Service</a></p>
+    </div>
+    </footer>
+	
+</body>
+</html>
